@@ -1,0 +1,88 @@
+/* Remove default margin */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* App container setup */
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header: Smaller size and logo */
+.header {
+  width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #20232a;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.25rem 2rem; /* Smaller padding for a smaller header */
+  font-size: 1.2rem; /* Slightly smaller font size */
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  font-size: 2rem; /* Slightly smaller logo icon */
+  margin-right: 0.8rem; /* Reduced space between icon and text */
+}
+
+.logo span {
+  font-size: 1.7rem; /* Smaller logo text size */
+  font-weight: bold;
+}
+
+/* Nav links styling */
+.nav a {
+  color: white;
+  margin-left: 1rem; /* Adjust space between links */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main content */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #f1f1f1;
+  padding: 1rem 2rem;
+  color: #333;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.socials a {
+  margin-left: 1rem;
+  color: #333;
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.socials a:hover {
+  color: #0077b5; /* LinkedIn blue hover color */
+}

@@ -1,31 +1,31 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
 /* Remove default margin */
 body {
   margin: 0;
   padding: 0;
+  background-color: #f4f4f9;
+  font-family: "Poppins", sans-serif;
 }
 
 /* App container setup */
 .App {
-  font-family: sans-serif;
   text-align: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-/* Header: Smaller size and logo */
+/* Header */
 .header {
   width: 100%;
-  position: relative;
-  top: 0;
-  left: 0;
-  background-color: #20232a;
+  background: linear-gradient(90deg, #20232a, #333);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.25rem 2rem; /* Smaller padding for a smaller header */
-  font-size: 1.2rem; /* Slightly smaller font size */
+  padding: 1rem 2rem;
   box-sizing: border-box;
 }
 
@@ -35,37 +35,40 @@ body {
 }
 
 .logo-icon {
-  font-size: 2rem; /* Slightly smaller logo icon */
-  margin-right: 0.8rem; /* Reduced space between icon and text */
+  font-size: 2.2rem;
+  margin-right: 0.5rem;
+  color: #ffd700;
 }
 
 .logo span {
-  font-size: 1.7rem; /* Smaller logo text size */
-  font-weight: bold;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-/* Nav links styling */
+/* Nav links */
 .nav a {
   color: white;
-  margin-left: 1rem; /* Adjust space between links */
+  margin-left: 1rem;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
 .nav a:hover {
-  text-decoration: underline;
+  color: #ffd700;
 }
 
 /* Main content */
 .main-content {
   flex: 1;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
 /* Footer */
 .footer {
   background-color: #f1f1f1;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   color: #333;
 }
 
@@ -80,9 +83,369 @@ body {
   margin-left: 1rem;
   color: #333;
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  transition: color 0.3s ease;
 }
 
 .socials a:hover {
-  color: #0077b5; /* LinkedIn blue hover color */
+  color: #0077b5;
+}
+
+/* Booking section */
+.booking-section {
+  margin: 1rem 0;
+}
+
+h2 {
+  font-size: 2.2rem;
+  color: #222;
+  margin-bottom: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #007bff, #28a745);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Movie list */
+.movie-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.movie-card {
+  cursor: pointer;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 12px 12px 0 0;
+}
+
+.movie-info {
+  padding: 1rem;
+  text-align: left;
+}
+
+.movie-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #222;
+  margin: 0 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.movie-description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Movie details */
+.movie-details {
+  text-align: left;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.movie-details h3 {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 0.5rem;
+}
+
+.movie-details p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  margin-bottom: 1rem;
+}
+
+.showtimes {
+  margin: 1rem 0;
+}
+
+.showtimes button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin: 0.3rem;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: transform 0.3s ease; /* Fixed syntax */
+}
+
+.showtimes button.selected {
+  background: linear-gradient(90deg, #28a745, #218838) !important;
+}
+
+.showtimes button:hover:not(.selected),
+.showtimes button:focus:not(.selected),
+.showtimes button:active:not(.selected) {
+  background: linear-gradient(90deg, #0056b3, #003087);
+  transform: scale(1.05);
+  outline: none;
+}
+
+.back-button {
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(90deg, #6c757d, #5a6268);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.05);
+}
+
+/* Seat Selection */
+.seat-selection {
+  margin: 1rem 0;
+}
+
+.screen {
+  background: linear-gradient(180deg, #ccc, #aaa);
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #999;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.seat-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seat-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.seat {
+  width: 35px;
+  height: 35px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.seat.selected {
+  background: linear-gradient(90deg, #28a745, #218838) !important;
+  transform: scale(1.1);
+}
+
+.seat.booked {
+  background: linear-gradient(90deg, #6c757d, #5a6268) !important;
+  cursor: not-allowed;
+}
+
+.seat:hover:not(.booked):not(.selected),
+.seat:focus:not(.booked):not(.selected),
+.seat:active:not(.booked):not(.selected) {
+  background: linear-gradient(90deg, #0056b3, #003087);
+  transform: scale(1.05);
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.legend-item .seat {
+  width: 18px;
+  height: 18px;
+}
+
+/* Booking Form */
+.booking-form {
+  margin: 1rem 0;
+}
+
+.booking-form h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.booking-form input {
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.book-button {
+  padding: 0.6rem;
+  background: linear-gradient(90deg, #28a745, #218838);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.book-button:hover {
+  transform: scale(1.05);
+}
+
+/* Booking Success */
+.booking-success {
+  margin: 1rem 0;
+  padding: 1.5rem;
+  background: linear-gradient(90deg, #28a745, #218838);
+  color: white;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.booking-success h4 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.booking-success p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+/* Animated Heading */
+.animated-heading {
+  background: linear-gradient(90deg, #007bff, #28a745);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+
+  .movie-list {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 0 0.5rem;
+  }
+
+  .movie-card {
+    width: 100%;
+  }
+
+  .movie-card img {
+    height: 320px;
+  }
+
+  .movie-details {
+    padding: 1rem;
+  }
+
+  .seat {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+  }
+
+  .seat-row {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .movie-details h3 {
+    font-size: 1.6rem;
+  }
+
+  .movie-title {
+    font-size: 1.3rem;
+  }
+
+  .movie-description {
+    font-size: 0.9rem;
+  }
 }

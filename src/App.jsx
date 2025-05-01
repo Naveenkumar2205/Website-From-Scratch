@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles.css";
 
 // Movie data with corrected TMDB poster URLs
@@ -90,6 +90,7 @@ function BookingSection() {
   const [selectedTime, setSelectedTime] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState(""); // Added phone state
   const [booked, setBooked] = useState(false);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeatsByMovieAndTime, setBookedSeatsByMovieAndTime] = useState({
@@ -100,6 +101,20 @@ function BookingSection() {
   const seatsPerRow = 10;
   const rows = totalSeats / seatsPerRow;
 
+  // Auto-hide booking confirmation after 10 seconds
+  useEffect(() => {
+    if (booked) {
+      const timer = setTimeout(() => {
+        setBooked(false);
+        setName("");
+        setEmail("");
+        setPhone("");
+        setSelectedSeats([]);
+      }, 10000); // 10 seconds
+      return () => clearTimeout(timer); // Cleanup on unmount
+    }
+  }, [booked]);
+
   const handleMovieSelection = (movie) => {
     setSelectedMovie(movie);
     setSelectedTime("");
@@ -107,6 +122,7 @@ function BookingSection() {
     setBooked(false);
     setName("");
     setEmail("");
+    setPhone("");
   };
 
   const handleTimeSelection = (time) => {
@@ -115,6 +131,7 @@ function BookingSection() {
     setBooked(false);
     setName("");
     setEmail("");
+    setPhone("");
   };
 
   const handleSeatSelection = (seatId) => {
@@ -130,7 +147,7 @@ function BookingSection() {
   };
 
   const handleBooking = () => {
-    if (name && email && selectedTime && selectedSeats.length > 0) {
+    if (name && email && phone && selectedTime && selectedSeats.length > 0) {
       const key = `${selectedMovie.id}_${selectedTime}`;
       setBookedSeatsByMovieAndTime((prev) => ({
         ...prev,
@@ -149,6 +166,7 @@ function BookingSection() {
     setBooked(false);
     setName("");
     setEmail("");
+    setPhone("");
   };
 
   const renderSeats = () => {
@@ -219,7 +237,54 @@ function BookingSection() {
             ))}
           </div>
           {selectedTime && (
-            <>
+            <div className="seat-and-booking-container">
+              <div className="booking-form slide-in">
+                <h4 className="animated-heading">Enter Your Details</h4>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="tel"
+                  placeholder="Enter your Ph.No"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <button onClick={handleBooking} className="book-button">
+                  Book Ticket
+                </button>
+                {booked && (
+                  <div className="booking-success slide-in">
+                    <h4 className="animated-heading">Booking Confirmed!</h4>
+                    <p>
+                      Your ticket for <strong>{selectedMovie.title}</strong> at {selectedTime} has been successfully booked!
+                    </p>
+                    <p>
+                      Seats: <strong>{selectedSeats.join(", ")}</strong>
+                    </p>
+                    {/* <p>
+                      Name: <strong>{name}</strong>
+                    </p>
+                    <p>
+                      Email: <strong>{email}</strong>
+                    </p>
+                    <p>
+                      Phone: <strong>{phone}</strong>
+                    </p> */}
+                    <button className="back-button" onClick={handleBack}>
+                      Book Another Ticket
+                    </button>
+                  </div>
+                )}
+              </div>
               <div className="seat-selection">
                 <h4 className="animated-heading">
                   Select Seats for {selectedMovie.title} at {selectedTime}
@@ -238,43 +303,8 @@ function BookingSection() {
                   </div>
                 </div>
               </div>
-              {selectedSeats.length > 0 && (
-                <div className="booking-form">
-                  <h4 className="animated-heading">Enter Your Details</h4>
-                  <input
-                    type="text"
-                    placeholder="Enter your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                  <button onClick={handleBooking} className="book-button">
-                    Book Ticket
-                  </button>
-                </div>
-              )}
-            </>
+            </div>
           )}
-        </div>
-      )}
-
-      {booked && (
-        <div className="booking-success">
-          <h4 className="animated-heading">Booking Confirmed!</h4>
-          <p>
-            Your ticket for <strong>{selectedMovie.title}</strong> at {selectedTime} has been successfully booked!
-          </p>
-          <p>
-            Seats: <strong>{selectedSeats.join(", ")}</strong>
-          </p>
-          <button className="back-button" onClick={handleBack}>
-            Book Another Ticket
-          </button>
         </div>
       )}
     </div>
